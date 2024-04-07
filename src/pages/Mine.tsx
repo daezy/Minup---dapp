@@ -4,7 +4,7 @@ import Modal from "../components/Modal";
 import { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
-const Stake = () => {
+const Mine = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>();
   const [tier, setTier] = useState<"tier1" | "tier2" | "tier3">("tier1");
@@ -17,7 +17,7 @@ const Stake = () => {
         <Link to={"/"}>
           <FaArrowLeft className="text-slate-400 text-xl cursor-pointer" />
         </Link>{" "}
-        <p>Stake</p>
+        <p>Mine</p>
       </div>
 
       <div className="bg-slate-100 p-4 py-6 rounded-2xl">
@@ -98,7 +98,7 @@ const Stake = () => {
           <div className="px-3 my-4">
             <p className="font-semibold">What&apos;s in this product?</p>
             <ul className="my-1">
-              <li>- &nbsp; Automated stake delegation</li>
+              <li>- &nbsp; Automated Mine delegation</li>
               <li>- &nbsp; Protected staking rewards</li>
             </ul>
           </div>
@@ -121,7 +121,7 @@ const Stake = () => {
         className="bg-orange-600 my-3 py-3 px-5 justify-center flex gap-3 items-center w-full text-slate-100 rounded-full mx-auto disabled:bg-slate-400"
         disabled
       >
-        Stake
+        Mine
       </button>
 
       <Modal onClose={() => setModalOpen(false)} open={modalOpen}>
@@ -251,4 +251,4 @@ const Stake = () => {
   );
 };
 
-export default Stake;
+export default Mine;

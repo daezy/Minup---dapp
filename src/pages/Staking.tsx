@@ -16,7 +16,7 @@ const Staking = () => {
           <div className="w-[97%] mx-auto">
             <div className="flex justify-between items-center mb-6">
               <div className="">
-                <p className=" text-orange-600 text-lg mb-1">Staked</p>
+                <p className=" text-orange-600 text-lg mb-1">Mined</p>
                 <p className="text-slate-800 text-xl">0 SOL</p>
               </div>
               <div className="">
@@ -36,9 +36,9 @@ const Staking = () => {
               ~ 0.00 <span className="text-base text-slate-800">SOL/Year</span>
             </p>
 
-            <Link to="/stake">
+            <Link to="/mine">
               <button className="bg-orange-600 my-3 py-3 px-5 justify-center flex gap-3 items-center w-full text-slate-100 rounded-full">
-                Stake More Sol
+                Mine More Sol
               </button>
             </Link>
 
@@ -73,7 +73,7 @@ const Staking = () => {
             <p className="text-slate-400">Not earning yield</p>
           </div>
           <div className="mt-3">
-            <Link to="/stake">
+            <Link to="/mine">
               <button className="bg-orange-600 my-3 py-3 px-6 justify-center flex gap-3 items-center text-slate-100 rounded-full">
                 Start earning
               </button>
@@ -101,17 +101,17 @@ const Staking = () => {
           <div className="text-center mt-4">
             <h2 className="text-2xl my-2">Liquid staking</h2>
             <p className="text-slate-400 text-sm">
-              Unlock stake liquidity for DeFi
+              Unlock mine liquidity for DeFi
             </p>
 
             <div className="my-4 ">
               <h3 className="text-lg text-slate-700 my-1">APY</h3>
               <h2 className="text-4xl text-orange-600">7.60%</h2>
             </div>
-            <Link to={"/stake"}>
+            <Link to={"/mine"}>
               <button className="bg-orange-600 my-3 py-3 px-5 justify-center flex gap-3 items-center w-11/12 text-slate-100 rounded-full mx-auto">
                 <FaCoins />
-                Stake
+                Mine
               </button>
             </Link>
           </div>
@@ -119,7 +119,7 @@ const Staking = () => {
           <div className="px-3 my-4">
             <p className="">What&apos;s in this product?</p>
             <ul className="my-1">
-              <li>- Automated stake delegation</li>
+              <li>- Automated mine delegation</li>
               <li>- Protected staking rewards</li>
             </ul>
           </div>
@@ -134,16 +134,16 @@ const Staking = () => {
           </div>
           <div className="text-center mt-4">
             <h2 className="text-2xl my-2">Native Staking</h2>
-            <p className="text-slate-400 text-sm">Automatic stake delegation</p>
+            <p className="text-slate-400 text-sm">Automatic mine delegation</p>
 
             <div className="my-4 ">
               <h3 className="text-lg text-slate-700 my-1">APY</h3>
               <h2 className="text-4xl text-orange-600">8.08%</h2>
             </div>
-            <Link to={"/stake"}>
+            <Link to={"/mine"}>
               <button className="bg-orange-600 my-3 py-3 px-5 justify-center flex gap-3 items-center w-11/12 text-slate-100 rounded-full mx-auto">
                 <FaCoins />
-                Stake
+                Mine
               </button>
             </Link>
           </div>
@@ -151,7 +151,7 @@ const Staking = () => {
           <div className="px-3 my-4">
             <p className="">What&apos;s in this product?</p>
             <ul className="my-1">
-              <li>- Automated stake delegation</li>
+              <li>- Automated mine delegation</li>
               <li>- Protected staking rewards</li>
             </ul>
           </div>

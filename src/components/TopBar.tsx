@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const routes = [
-  { path: "/", title: "Staking", icon: <FaCoins /> },
+  { path: "/", title: "Mining", icon: <FaCoins /> },
   { path: "/calculator", title: "Calculator", icon: <BiCalculator /> },
   { path: "/faq", title: "Faq", icon: <BiUserVoice /> },
 ];

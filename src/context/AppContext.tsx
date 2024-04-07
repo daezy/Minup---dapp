@@ -24,12 +24,12 @@ export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
   const { wallet } = useWallet();
 
   useEffect(() => {
-    if (wallet?.adapter.name) {
+    if (wallet?.adapter.publicKey) {
       setWalletConnected(true);
     } else {
       setWalletConnected(false);
     }
-  }, [wallet]);
+  }, [wallet?.adapter.publicKey]);
 
   useEffect(() => {
     const getBalance = async () => {

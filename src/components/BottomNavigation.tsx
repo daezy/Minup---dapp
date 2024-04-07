@@ -3,7 +3,7 @@ import { FaCoins } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const routes = [
-  { path: "/", title: "Staking", icon: <FaCoins /> },
+  { path: "/", title: "Mining", icon: <FaCoins /> },
   { path: "/calculator", title: "Calculator", icon: <BiCalculator /> },
   { path: "/faq", title: "Faq", icon: <BiUserVoice /> },
 ];
