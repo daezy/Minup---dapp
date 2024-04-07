@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useMemo } from "react";
+import React from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -8,14 +8,14 @@ import * as walletAdapterWallets from "@solana/wallet-adapter-wallets";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { clusterApiUrl } from "@solana/web3.js";
 
-const WalletContextProvider: FC<{
-  children: ReactNode;
+const WalletContextProvider: React.FC<{
+  children: React.ReactNode;
   network: "devnet" | "mainnet-beta" | "testnet";
 }> = ({ children, network }) => {
   // const endpoint =
   //   "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
   const endpoint = clusterApiUrl(network);
-  const wallets = useMemo(() => {
+  const wallets = React.useMemo(() => {
     return [
       new walletAdapterWallets.PhantomWalletAdapter(),
       new walletAdapterWallets.SolflareWalletAdapter(),
