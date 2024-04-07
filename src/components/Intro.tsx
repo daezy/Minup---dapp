@@ -11,8 +11,8 @@ const Intro = () => {
         <span className="text-orange-400"> Solana Mining</span>
       </h1>
       <p className="text-slate-400 my-1">
-        Start staking SOL, review your existing mine, and unmine at any time,
-        for the best price.
+        Start Mining SOL, review your existing mine, and unmine at any time, for
+        the best price.
       </p>
       <button
         className="bg-orange-600 my-3 py-3 px-5 justify-center flex gap-3 items-center w-11/12 md:w-7/12 text-slate-100 rounded-full"
