@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { BiDiamond } from "react-icons/bi";
 
-const Staking = () => {
+const Mining = () => {
   const ctx = useContext(AppContext);
   return (
     <>
@@ -99,7 +99,7 @@ const Staking = () => {
             />
           </div>
           <div className="text-center mt-4">
-            <h2 className="text-2xl my-2">Liquid staking</h2>
+            <h2 className="text-2xl my-2">Liquid Mining</h2>
             <p className="text-slate-400 text-sm">
               Unlock mine liquidity for DeFi
             </p>
@@ -120,7 +120,7 @@ const Staking = () => {
             <p className="">What&apos;s in this product?</p>
             <ul className="my-1">
               <li>- Automated mine delegation</li>
-              <li>- Protected staking rewards</li>
+              <li>- Protected Mining rewards</li>
             </ul>
           </div>
         </div>
@@ -133,7 +133,7 @@ const Staking = () => {
             />
           </div>
           <div className="text-center mt-4">
-            <h2 className="text-2xl my-2">Native Staking</h2>
+            <h2 className="text-2xl my-2">Native Mining</h2>
             <p className="text-slate-400 text-sm">Automatic mine delegation</p>
 
             <div className="my-4 ">
@@ -152,7 +152,7 @@ const Staking = () => {
             <p className="">What&apos;s in this product?</p>
             <ul className="my-1">
               <li>- Automated mine delegation</li>
-              <li>- Protected staking rewards</li>
+              <li>- Protected Mining rewards</li>
             </ul>
           </div>
         </div>
@@ -163,4 +163,4 @@ const Staking = () => {
   );
 };
 
-export default Staking;
+export default Mining;
