@@ -8,10 +8,10 @@ const Intro = () => {
     <div className="w-[90%] mx-auto text-center flex flex-col items-center">
       <h1 className="text-4xl my-2 kanit-medium leading-tight">
         All you ever need in one place for{" "}
-        <span className="text-orange-400"> Solana Staking</span>
+        <span className="text-orange-400"> Solana Mining</span>
       </h1>
       <p className="text-slate-400 my-1">
-        Start staking SOL, review your existing stake, and unstake at any time,
+        Start staking SOL, review your existing mine, and unmine at any time,
         for the best price.
       </p>
       <button
