@@ -70,7 +70,11 @@ const Mine = () => {
               <div className="w-12 h-12 flex items-center justify-center rounded-full mx-auto">
                 <img
                   src={`${
-                    tier == "tier2" ? "./img/black.svg" : "./img/sol.png"
+                    tier == "tier2"
+                      ? "./img/bsc.svg"
+                      : tier == "tier3"
+                      ? "./img/ethereum.svg"
+                      : "./img/sol.png"
                   }`}
                   alt="sol"
                   className="max-w-full"
@@ -82,10 +86,10 @@ const Mine = () => {
                 <p className="text-sm">Strategy</p>
                 <p className="text-black">
                   {tier == "tier1"
-                    ? "Tier 1"
+                    ? "Solana Mining"
                     : tier == "tier2"
-                    ? "Tier 2"
-                    : "Tier 3"}
+                    ? "BSC Mining"
+                    : "Ethereum Mining"}
                 </p>
               </div>
             </div>
@@ -104,7 +108,7 @@ const Mine = () => {
           </div>
 
           <p className="flex items-center gap-3 bg-slate-200 text-orange-500 p-2 rounded-xl">
-            <FaCoins /> Get mSOL token and participate in DeFi with 20+
+            <FaCoins /> Get SOL token and participate in DeFi with 20+
             integrations
           </p>
         </div>
@@ -157,7 +161,7 @@ const Mine = () => {
 
                 <div className="text-slate-500">
                   <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 1</p>
+                  <p className="text-black">Solana Mining</p>
                 </div>
               </div>
 
@@ -167,25 +171,26 @@ const Mine = () => {
             </div>
 
             <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get mSOL token and participate in
-              DeFi with 20+ integrations
+              <FaCoins className="w-10" /> Get SOL token and participate in DeFi
+              with 20+ integrations
             </div>
           </div>
 
+          <p className="my-4 text-lg text-slate-700">Coming Soon!</p>
           <div
             className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
               tier == "tier2" && "border-2 border-orange-300 bg-orange-50"
             }`}
-            onClick={() => {
-              setTier("tier2");
-              setModalOpen(false);
-            }}
+            // onClick={() => {
+            //   setTier("tier2");
+            //   setModalOpen(false);
+            // }}
           >
             <div className="flex items-center justify-between gap-3 ">
               <div className="flex items-center gap-3">
                 <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
                   <img
-                    src="./img/black.svg"
+                    src="./img/bsc.svg"
                     alt="sol"
                     className="max-w-full"
                     width={35}
@@ -194,7 +199,7 @@ const Mine = () => {
 
                 <div className="text-slate-500">
                   <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 2</p>
+                  <p className="text-black">BSC Mining</p>
                 </div>
               </div>
 
@@ -204,8 +209,8 @@ const Mine = () => {
             </div>
 
             <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get mSOL token and participate in
-              DeFi with 20+ integrations
+              <FaCoins className="w-10" /> Get BSC token and participate in DeFi
+              with 20+ integrations
             </div>
           </div>
 
@@ -213,25 +218,25 @@ const Mine = () => {
             className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
               tier == "tier3" && "border-2 border-orange-300 bg-orange-50"
             }`}
-            onClick={() => {
-              setTier("tier3");
-              setModalOpen(false);
-            }}
+            // onClick={() => {
+            //   setTier("tier3");
+            //   setModalOpen(false);
+            // }}
           >
             <div className="flex items-center justify-between gap-3 ">
               <div className="flex items-center gap-3">
                 <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
                   <img
-                    src="./img/sol.png"
+                    src="./img/ethereum.svg"
                     alt="sol"
                     className="max-w-full"
-                    width={35}
+                    width={28}
                   />
                 </div>
 
                 <div className="text-slate-500">
                   <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 3</p>
+                  <p className="text-black">Ethereum Mining</p>
                 </div>
               </div>
 
@@ -241,8 +246,8 @@ const Mine = () => {
             </div>
 
             <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get mSOL token and participate in
-              DeFi with 20+ integrations
+              <FaCoins className="w-10" /> Get ETH token and participate in DeFi
+              with 20+ integrations
             </div>
           </div>
         </div>

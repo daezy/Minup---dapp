@@ -11,7 +11,7 @@ const routes = [
 
 const TopBar = () => {
   return (
-    <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
       <div className="brand">
         <img
           src="./img/logo.png"
