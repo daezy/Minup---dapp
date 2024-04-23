@@ -5,4 +5,8 @@ export type AppContextType = {
   connection: Connection;
   walletAddress: PublicKey | undefined | null;
   solBalance: number;
+  error: string;
+  success: string;
+  setError: (msg: string) => void;
+  setSuccess: (msg: string) => void;
 };

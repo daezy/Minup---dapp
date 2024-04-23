@@ -13,6 +13,10 @@ export const AppContext = React.createContext<AppContextType>({
   connection: new Connection(clusterApiUrl("devnet")),
   walletAddress: PublicKey.default,
   solBalance: 0,
+  success: "",
+  error: "",
+  setError: () => {},
+  setSuccess: () => {},
 });
 
 export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
@@ -20,6 +24,8 @@ export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
 }) => {
   const [walletConnected, setWalletConnected] = useState<boolean>(false);
   const [solBalance, setSolBalance] = useState<number>(0);
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const { connection } = useConnection();
   const { wallet } = useWallet();
 
@@ -43,6 +49,14 @@ export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
     getBalance();
   }, [connection, wallet?.adapter.publicKey]);
 
+  const handleSetError = (msg: string) => {
+    setError(msg);
+  };
+
+  const handleSetSuccess = (msg: string) => {
+    setSuccess(msg);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -50,6 +64,10 @@ export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
         solBalance,
         connection,
         walletAddress: wallet?.adapter.publicKey,
+        error,
+        success,
+        setError: handleSetError,
+        setSuccess: handleSetSuccess,
       }}
     >
       {children}
