@@ -2,9 +2,6 @@ import React, { useState } from "react";
 
 const Referral: React.FC<{
   address: string | undefined;
-  referred: boolean;
-  referrer: string;
-  setReferrer: (address: string) => void;
 }> = (props) => {
   const [copyText, setCopyText] = useState<string>("Copy");
 
@@ -23,23 +20,6 @@ const Referral: React.FC<{
   return (
     <div className="overflow-hidden">
       <div>
-        {!props.referred && (
-          <div>
-            <h2 className="my-2">Referral Address</h2>
-            <input
-              type="text"
-              id="referral"
-              name="referral"
-              className="outline-none mb-4 placeholder-slate-600 placeholder-custom w-full p-3 placeholder-text-right border"
-              placeholder="Enter referral address"
-              value={props.referrer}
-              onChange={(e) => props.setReferrer(e.target.value)}
-            />
-
-            <br />
-          </div>
-        )}
-
         <h2 className="my-2">Referral Link</h2>
         <p className="bg-slate-200 p-3 py-4 rounded-md text-sm text-orange-600 flex items-center justify-between gap-3">
           <span className="break-words overflow-clip">{referralLink}</span>

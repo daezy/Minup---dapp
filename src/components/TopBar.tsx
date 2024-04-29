@@ -1,24 +1,13 @@
-import { BiCalculator, BiUserVoice } from "react-icons/bi";
-import { FaCoins } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-
-const routes = [
-  { path: "/", title: "Mining", icon: <FaCoins /> },
-  { path: "/calculator", title: "Calculator", icon: <BiCalculator /> },
-  { path: "/faq", title: "Faq", icon: <BiUserVoice /> },
-];
+import logo from "../assets/logo.png";
+import { NavigationRoutes as routes } from "../utils/Navigation";
 
 const TopBar = () => {
   return (
     <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
       <div className="brand">
-        <img
-          src="./img/logo.png"
-          alt="logo"
-          className="max-w-full"
-          width={100}
-        />
+        <img src={logo} alt="logo" className="max-w-full" width={100} />
       </div>
 
       <div className="links md:flex items-center hidden">

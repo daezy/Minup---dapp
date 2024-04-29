@@ -8,6 +8,7 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
 import { AppContext } from "./context/AppContext";
+import ReferralPage from "./pages/ReferralPage";
 
 function App() {
   const ctx = useContext(AppContext);
@@ -28,7 +29,8 @@ function App() {
         <div className="container md:w-[45%] mx-auto px-4 py-7 flex flex-col gap-7 mb-20 md:mb-auto">
           <Routes>
             <Route path="/" element={<Mining />} />
-            <Route path="/Mine" element={<Mine />} />
+            <Route path="/app/Mine" element={<Mine />} />
+            <Route path="/referral" element={<ReferralPage />} />
           </Routes>
         </div>
       </main>

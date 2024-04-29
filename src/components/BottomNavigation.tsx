@@ -1,12 +1,7 @@
 import { BiCalculator, BiUserVoice } from "react-icons/bi";
 import { FaCoins } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-
-const routes = [
-  { path: "/", title: "Mining", icon: <FaCoins /> },
-  { path: "/calculator", title: "Calculator", icon: <BiCalculator /> },
-  { path: "/faq", title: "Faq", icon: <BiUserVoice /> },
-];
+import { NavigationRoutes as routes } from "../utils/Navigation";
 
 const BottomNavigation = () => {
   return (
