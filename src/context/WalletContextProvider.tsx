@@ -14,9 +14,12 @@ const WalletContextProvider: React.FC<{
   network: "devnet" | "mainnet-beta" | "testnet";
 }> = ({ children, network }) => {
   const ctx = useContext(AppContext);
-  // const endpoint =
-  //   "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
-  const endpoint = clusterApiUrl(ctx.network);
+  let endpoint: string;
+  if (ctx.network == "mainnet-beta") {
+    endpoint = "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
+  } else {
+    endpoint = clusterApiUrl(ctx.network)
+  }
   const wallets = React.useMemo(() => {
     return [
       new walletAdapterWallets.PhantomWalletAdapter(),
