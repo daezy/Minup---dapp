@@ -8,12 +8,14 @@ import WalletContextProvider from "./context/WalletContextProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <WalletContextProvider network="devnet">
-      <AppContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AppContextProvider>
-    </WalletContextProvider>
+    <AppContextProvider>
+      <WalletContextProvider network="devnet">
+        <AppContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AppContextProvider>
+      </WalletContextProvider>
+    </AppContextProvider>
   </React.StrictMode>
 );

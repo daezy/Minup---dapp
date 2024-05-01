@@ -9,7 +9,6 @@ import Strategies from "../components/Strategies";
 
 const Mining = () => {
   const [refAddress, setRefAddress] = useState<string>("");
-  const [userDataExists, setUserDataExists] = useState<boolean>(true);
   const [userTier, setUserTier] = useState<string>("");
   const ctx = useContext(AppContext);
   const location = useLocation();
@@ -39,7 +38,7 @@ const Mining = () => {
         <div className="bg-slate-100 p-4 py-10 rounded-2xl">
           <Intro />
         </div>
-      ) : userDataExists ? (
+      ) : ctx.userInitialized ? (
         <div className="bg-slate-100 p-4 py-10 rounded-2xl">
           <div className="w-[97%] mx-auto">
             <div className="flex justify-between items-center mb-6">
@@ -111,11 +110,11 @@ const Mining = () => {
               </div>
 
               <p className="text-slate-400">
-                {userDataExists ? "rewards SOL" : "Not earning yield"}
+                {ctx.userInitialized ? "rewards SOL" : "Not earning yield"}
               </p>
             </div>
             <div className="mt-3">
-              {userDataExists ? (
+              {ctx.userInitialized ? (
                 // true if userdata exists and false if it doesnt exist
                 <div className="flex items-center justify-between gap-3">
                   <Link to="/mine">

@@ -9,6 +9,7 @@ const Mine = () => {
   const [amount, setAmount] = useState<number>();
   const [tier, setTier] = useState<"tier1" | "tier2" | "tier3">("tier1");
   const [mineType, setMineType] = useState<"new" | "increase">("new");
+  const [whitelisted, setWhitelisted] = useState<boolean>(false);
 
   const [refAddress, setRefAddress] = useState<string>("");
 
@@ -157,6 +158,20 @@ const Mine = () => {
             />
 
             <br />
+          </div>
+
+          <div className="my-3 flex justify-end items-center gap-3">
+            <label htmlFor="whitelist">
+              Stake via whitelist(For whitelisteed users only)
+            </label>
+            <input
+              type="checkbox"
+              name="whitelist"
+              id="whitelist"
+              checked={whitelisted}
+              onChange={() => setWhitelisted((whitelisted) => !whitelisted)}
+              className="w-5 h-5"
+            />
           </div>
 
           <div className="flex items-center gap-3 justify-between mt-5">
