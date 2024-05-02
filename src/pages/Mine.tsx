@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
+import { useConnection } from "@solana/wallet-adapter-react";
 
 const Mine = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -33,6 +34,8 @@ const Mine = () => {
   }, []);
 
   const ctx = useContext(AppContext);
+  const connection = useConnection();
+  console.log(connection)
 
   return (
     <>

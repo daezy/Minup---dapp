@@ -10,11 +10,16 @@ import { clusterApiUrl } from "@solana/web3.js";
 
 const WalletContextProvider: React.FC<{
   children: React.ReactNode;
-  network: "devnet" | "mainnet-beta" | "testnet";
+  network: "devnet" | "testnet" | "mainnet-beta";
 }> = ({ children, network }) => {
-  // const endpoint =
-  //   "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
-  const endpoint = clusterApiUrl(network);
+  const ctx = useContext(AppContext);
+  let endpoint: string;
+  if (ctx.network == "mainnet-beta") {
+    endpoint =
+      "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
+  } else {
+    endpoint = clusterApiUrl(ctx.network);
+  }
   const wallets = React.useMemo(() => {
     return [
       new walletAdapterWallets.PhantomWalletAdapter(),
