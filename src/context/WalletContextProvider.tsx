@@ -10,8 +10,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { AppContext } from "./AppContext";
 
 const WalletContextProvider: React.FC<{
-  children: React.ReactNode;
-  network: "devnet" | "mainnet-beta" | "testnet";
+  children: React.ReactNode,
+  network: 'devnet' | 'testnet' | 'mainnet-beta'
 }> = ({ children, network }) => {
   const ctx = useContext(AppContext);
   let endpoint: string;
