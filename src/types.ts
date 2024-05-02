@@ -1,9 +1,11 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 import React from "react";
+import * as anchor from "@project-serum/anchor";
 
 export type AppContextType = {
   walletConnected: boolean;
   connection: Connection;
+  provider: anchor.Provider | undefined;
   walletAddress: PublicKey | undefined | null;
   solBalance: number;
   error: string;

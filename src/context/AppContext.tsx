@@ -6,11 +6,13 @@ import {
   LAMPORTS_PER_SOL,
   PublicKey,
 } from "@solana/web3.js";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
+import * as anchor from "@project-serum/anchor";
 
 export const AppContext = React.createContext<AppContextType>({
   walletConnected: false,
   connection: new Connection(clusterApiUrl("devnet")),
+  provider: undefined,
   walletAddress: PublicKey.default,
   solBalance: 0,
   success: "",
@@ -23,39 +25,57 @@ export const AppContext = React.createContext<AppContextType>({
   setSuccess: () => {},
 });
 
-export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
-  children,
-}) => {
+export const AppContextProvider: React.FC<{
+  children: React.ReactElement;
+  network: "devnet" | "testnet" | "mainnet-beta";
+  setNetwork: React.Dispatch<
+    React.SetStateAction<"devnet" | "testnet" | "mainnet-beta">
+  >;
+}> = ({ children, network, setNetwork }) => {
   const [walletConnected, setWalletConnected] = useState<boolean>(false);
-  const [userInitialized, setUserInitialized] = useState<boolean>(false);
+  const [provider, setProvider] = useState<anchor.Provider>();
+  const [userInitialized, setUserInitialized] = useState<boolean>(true);
   const [solBalance, setSolBalance] = useState<number>(0);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
-  const [network, setNetwork] = useState<"devnet" | "testnet" | "mainnet-beta">(
-    "devnet"
-  );
+
   const { connection } = useConnection();
-  const { wallet } = useWallet();
+  const wallet = useAnchorWallet();
 
   useEffect(() => {
-    if (wallet?.adapter.publicKey) {
+    if (wallet?.publicKey) {
       setWalletConnected(true);
     } else {
       setWalletConnected(false);
     }
-  }, [wallet?.adapter.publicKey]);
+  }, [wallet?.publicKey]);
 
   useEffect(() => {
     const getBalance = async () => {
-      if (wallet?.adapter.publicKey) {
-        const balance = await connection.getBalance(wallet?.adapter.publicKey);
+      if (wallet?.publicKey) {
+        const balance = await connection.getBalance(wallet?.publicKey);
         const balanceInSol = balance / LAMPORTS_PER_SOL;
         setSolBalance(balanceInSol);
       }
     };
 
     getBalance();
-  }, [connection, wallet?.adapter.publicKey, network]);
+  }, [connection, wallet?.publicKey, network]);
+
+  useEffect(() => {
+    let provider: anchor.Provider;
+
+    if (wallet) {
+      try {
+        provider = anchor.getProvider();
+        setProvider(provider);
+      } catch {
+        provider = new anchor.AnchorProvider(connection, wallet, {});
+        anchor.setProvider(provider);
+        setProvider(provider);
+      }
+    }
+  }, [wallet]);
 
   const handleSetError = (msg: string) => {
     setError(msg);
@@ -71,8 +91,9 @@ export const AppContextProvider: React.FC<{ children: React.ReactElement }> = ({
         walletConnected,
         userInitialized,
         solBalance,
+        provider,
         connection,
-        walletAddress: wallet?.adapter.publicKey,
+        walletAddress: wallet?.publicKey,
         error,
         success,
         network,
