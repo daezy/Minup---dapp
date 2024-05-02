@@ -12,13 +12,12 @@ const WalletContextProvider: React.FC<{
   children: React.ReactNode;
   network: "devnet" | "testnet" | "mainnet-beta";
 }> = ({ children, network }) => {
-  const ctx = useContext(AppContext);
   let endpoint: string;
-  if (ctx.network == "mainnet-beta") {
+  if (network == "mainnet-beta") {
     endpoint =
       "https://solana-mainnet.g.alchemy.com/v2/mSSt0hYTZTKiDCQwz8TLgt7duMQLueDZ";
   } else {
-    endpoint = clusterApiUrl(ctx.network);
+    endpoint = clusterApiUrl(network);
   }
   const wallets = React.useMemo(() => {
     return [
