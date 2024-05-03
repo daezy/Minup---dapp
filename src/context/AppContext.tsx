@@ -21,6 +21,8 @@ export const AppContext = React.createContext<AppContextType>({
   solBalance: 0,
   mineInfo: undefined,
   tiers: [],
+  userInfo: undefined,
+  referralInfo: undefined,
   success: "",
   error: "",
   network: "devnet",
