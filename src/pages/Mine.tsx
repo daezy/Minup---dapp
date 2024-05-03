@@ -35,7 +35,7 @@ const Mine = () => {
 
   const ctx = useContext(AppContext);
   const connection = useConnection();
-  console.log(connection)
+  console.log(connection);
 
   return (
     <>
