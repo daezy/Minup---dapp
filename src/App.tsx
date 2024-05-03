@@ -32,7 +32,7 @@ function App() {
               <div className="container md:w-[45%] mx-auto px-4 py-7 flex flex-col gap-7 mb-20 md:mb-auto">
                 <Routes>
                   <Route path="/" element={<Mining />} />
-                  <Route path="/app/Mine" element={<Mine />} />
+                  <Route path="/mine" element={<Mine />} />
                   <Route path="/referral" element={<ReferralPage />} />
                 </Routes>
               </div>
