@@ -3,12 +3,12 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import Modal from "../components/Modal";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
-import { useConnection } from "@solana/wallet-adapter-react";
+import { TierInfo } from "../types";
 
 const Mine = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>();
-  const [tier, setTier] = useState<"tier1" | "tier2" | "tier3">("tier1");
+  const [selectedTier, setTier] = useState<TierInfo>();
   const [mineType, setMineType] = useState<"new" | "increase">("new");
   const [whitelisted, setWhitelisted] = useState<boolean>(false);
 
@@ -34,8 +34,6 @@ const Mine = () => {
   }, []);
 
   const ctx = useContext(AppContext);
-  const connection = useConnection();
-  console.log(connection)
 
   return (
     <>
@@ -102,13 +100,6 @@ const Mine = () => {
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 flex items-center justify-center rounded-full mx-auto">
                 <img
-                  // src={`${
-                  //   tier == "tier2"
-                  //     ? "./img/bsc.svg"
-                  //     : tier == "tier3"
-                  //     ? "./img/ethereum.svg"
-                  //     : "./img/sol.png"
-                  // }`}
                   src="../img/sol.png"
                   alt="sol"
                   className="max-w-full"
@@ -119,17 +110,13 @@ const Mine = () => {
               <div className="text-slate-500">
                 <p className="text-sm">Preferred Tier</p>
                 <p className="text-black">
-                  {tier == "tier1"
-                    ? "Tier 1"
-                    : tier == "tier2"
-                    ? "Tier 2"
-                    : "Tier 3"}
+                  {selectedTier ? `Tier ${selectedTier.nonce + 1}` : 'None'}
                 </p>
               </div>
             </div>
 
             <p className="p-1 text-orange-600 bg-slate-100 px-3 rounded-full">
-              {tier == "tier2" ? "7.09" : tier == "tier3" ? "20" : "12"} % APY
+              {selectedTier ? `${selectedTier.apy}% APY` : 'None'}
             </p>
           </div>
 
@@ -194,124 +181,51 @@ const Mine = () => {
       <Modal onClose={() => setModalOpen(false)} open={modalOpen}>
         <div>
           <div className="flex items-center gap-3 justify-between py-3 mb-5 text-xl">
-            <p>Delegation</p>
+            <p>Select Preferred Tier</p>
 
             <FaTimes
               className="cursor-pointer hover:text-slate-700 text-black mr-3"
               onClick={() => setModalOpen(false)}
             />
           </div>
+          {
+            ctx.tiers.map((tier, id) => {
+              return (
+                <div
+                  key={id}
+                  className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
+                    tier.address.toString() == selectedTier?.address.toString() && "border-2 border-orange-300 bg-orange-50"
+                  }`}
+                  onClick={() => {
+                    setTier(tier);
+                    setModalOpen(false);
+                  }}
+                >
+                  <div className="flex items-center justify-between gap-3 ">
+                    <div className="flex items-center gap-3">
+                      <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
+                        <img
+                          src="./img/sol.png"
+                          alt="sol"
+                          className="max-w-full"
+                          width={35}
+                        />
+                      </div>
 
-          <div
-            className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
-              tier == "tier1" && "border-2 border-orange-300 bg-orange-50"
-            }`}
-            onClick={() => {
-              setTier("tier1");
-              setModalOpen(false);
-            }}
-          >
-            <div className="flex items-center justify-between gap-3 ">
-              <div className="flex items-center gap-3">
-                <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
-                  <img
-                    src="./img/sol.png"
-                    alt="sol"
-                    className="max-w-full"
-                    width={35}
-                  />
+                      <div className="text-slate-500">
+                        <p className="text-sm">Strategy</p>
+                        <p className="text-black">Tier {tier.nonce + 1}</p>
+                      </div>
+                    </div>
+
+                    <p className="p-1 text-orange-600 bg-slate-100 px-3 rounded-full">
+                      {tier.apy}% APY
+                    </p>
+                  </div>
                 </div>
-
-                <div className="text-slate-500">
-                  <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 1</p>
-                </div>
-              </div>
-
-              <p className="p-1 text-orange-600 bg-slate-100 px-3 rounded-full">
-                7.60% APY
-              </p>
-            </div>
-
-            {/* <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get SOL token and participate in DeFi
-              with 20+ integrations
-            </div> */}
-          </div>
-
-          <div
-            className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
-              tier == "tier2" && "border-2 border-orange-300 bg-orange-50"
-            }`}
-            onClick={() => {
-              setTier("tier2");
-              setModalOpen(false);
-            }}
-          >
-            <div className="flex items-center justify-between gap-3 ">
-              <div className="flex items-center gap-3">
-                <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
-                  <img
-                    src="./img/sol.png"
-                    alt="sol"
-                    className="max-w-full"
-                    width={35}
-                  />
-                </div>
-
-                <div className="text-slate-500">
-                  <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 2</p>
-                </div>
-              </div>
-
-              <p className="p-1 text-orange-600 bg-slate-100 px-3 rounded-full">
-                7.60% APY
-              </p>
-            </div>
-
-            {/* <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get BSC token and participate in DeFi
-              with 20+ integrations
-            </div> */}
-          </div>
-
-          <div
-            className={`bg-slate-200 cursor-pointer p-3 rounded-2xl mb-3 ${
-              tier == "tier3" && "border-2 border-orange-300 bg-orange-50"
-            }`}
-            onClick={() => {
-              setTier("tier3");
-              setModalOpen(false);
-            }}
-          >
-            <div className="flex items-center justify-between gap-3 ">
-              <div className="flex items-center gap-3">
-                <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
-                  <img
-                    src="./img/sol.png"
-                    alt="sol"
-                    className="max-w-full"
-                    width={28}
-                  />
-                </div>
-
-                <div className="text-slate-500">
-                  <p className="text-sm">Strategy</p>
-                  <p className="text-black">Tier 3</p>
-                </div>
-              </div>
-
-              <p className="p-1 text-orange-600 bg-slate-100 px-3 rounded-full">
-                7.60% APY
-              </p>
-            </div>
-
-            {/* <div className="bg-slate-300 mt-4 rounded-2xl p-3 flex items-center gap-2 text-orange-600 text-sm">
-              <FaCoins className="w-10" /> Get ETH token and participate in DeFi
-              with 20+ integrations
-            </div> */}
-          </div>
+              )
+            })
+          }
         </div>
       </Modal>
     </>
