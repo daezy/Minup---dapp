@@ -4,6 +4,7 @@ import Modal from "../components/Modal";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { TierInfo } from "../types";
+import { useConnection } from "@solana/wallet-adapter-react";
 
 const Mine = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -207,7 +208,7 @@ const Mine = () => {
                   <div className="flex items-center gap-3">
                     <div className=" w-12 h-12 flex items-center justify-center rounded-full mx-auto">
                       <img
-                        src="./img/sol.png"
+                        src="../img/sol.png"
                         alt="sol"
                         className="max-w-full"
                         width={35}
@@ -224,6 +225,13 @@ const Mine = () => {
                     {tier.apy}% APY
                   </p>
                 </div>
+
+                <p className="flex items-center gap-3 p-2 bg-o-200 rounded-xl mt-4 text-orange-400 bg-slate-100">
+                  <FaCoins className="" />{" "}
+                  <span>
+                    Must hold minimum of {tier.minimumTokenAmount} Tokens
+                  </span>
+                </p>
               </div>
             );
           })}
